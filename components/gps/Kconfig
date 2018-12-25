@@ -1,0 +1,31 @@
+menu "GPS"
+
+choice GPS_UART_NUM
+    prompt "Which UART port to use"
+    default GPS_UART_NUM_1
+
+config GPS_UART_NUM_0
+    bool "UART0"
+config GPS_UART_NUM_1
+    bool "UART1"
+config GPS_UART_NUM_2
+    bool "UART2"
+endchoice
+
+config GPS_UART_CUSTOM
+    bool "Use custom UART pins"
+    default 1
+
+config GPS_UART_TX_GPIO
+    int "UART TX on GPIO#"
+    depends on GPS_UART_CUSTOM
+    range 0 33
+    default 15
+
+config GPS_UART_RX_GPIO
+    int "UART RX on GPIO#"
+    depends on GPS_UART_CUSTOM
+    range 0 39
+    default 12
+
+endmenu
